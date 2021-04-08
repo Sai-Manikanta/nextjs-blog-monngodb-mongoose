@@ -24,7 +24,8 @@ export async function getStaticProps(){
     return {
         props: {
             blogs: JSON.stringify(blogs)
-        }
+        },
+        revalidate: 60
     }
 
 }
