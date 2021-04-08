@@ -1,5 +1,5 @@
-import dbConnect from '../../../utils/dbConnect';
-import Blog from '../../../models/Blog';
+import dbConnect from '../../../utils/dbConnect'
+import Blog from '../../../models/Blog'
 
 export default async function handler(req, res){
     const method = req.method;
@@ -22,6 +22,15 @@ export default async function handler(req, res){
                 res.status(200).json({ message: `blog ${id} deleted` });
               } else {
                 res.status(400).json({ success: false })
+              }
+            });
+          break;
+        case "PUT":
+            Blog.findByIdAndUpdate(id, req.body, (err, docs) => {
+              if (!err){
+                  res.status(200).json({ success: true, data: docs })
+              } else{
+                  res.status(400).json({ success: false })
               }
             });
           break;
